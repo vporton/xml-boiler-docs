@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:struct="http://portonvictor.org/ns/myxhtml/struct" xmlns:syntax="http://portonvictor.org/ns/syntax">
+<head>
+    <meta charset="UTF-8"/>
+    <title>XML Boiler Documentation</title>
+    <link href="syntax.css" rel="Stylesheet"/>
+</head>
+<body>
+
+    <h1>XML Boiler program</h1>
+
+    <h2>Table of Contents</h2>
+
+    <ul class="ToC"><li><a href="#idm14">Introduction</a></li><li><a href="#idm20">Command line</a><ul class="ToC"><li><a href="#idm22">Common options</a></li><li><a href="#idm47">Chain</a></li></ul></li><li><a href="#idm87">Supported namespaces</a><ul class="ToC"><li><a href="#idm93"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</a></li><li><a href="#idm97"><code>http://portonvictor.org/ns/comment</code> (Comment)</a></li><li><a href="#idm102"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</a></li></ul></li></ul>
+
+    <p>XML Boiler is a command line program (in the future I am going to make also HTTP(S) proxy interface)
+    which automatically processes XML based on its namespaces.</p>
+
+    <p>This is a rough alpha (not thoroughly tested) release.</p>
+
+    <p>This program (well, almost) conforms to
+        <a href="https://en.wikiversity.org/wiki/Automatic_transformation_of_XML_namespaces">the specification</a>.
+    See the specification for more details of what this program does and what is it purpose.</p>
+
+    <h2 id="idm14">Introduction</h2>
+        
+
+        <p>Consider an XML file with XInclude:</p>
+
+        <pre><div class="highlight"><pre><span/><span class="nt">&lt;y</span> <span class="na">xmlns:xi=</span><span class="s">&quot;http://www.w3.org/2001/XInclude&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xi:include</span> <span class="na">href=</span><span class="s">&quot;simple.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/y&gt;</span>
+        
+</pre></div></pre>
+
+        <p>We run XML Boiler as follows:</p>
+        <pre>xmlboiler -r order chain tests/core/data/xml/xinclude.xml -u http://portonvictor.org/ns/trans/precedence-include</pre>
+    
+
+    <h2 id="idm20">Command line</h2>
+        
+
+        <h3 id="idm22">Common options</h3>
+            
+
+            <dl>
+                <dt><code>-h</code>, <code>--help</code></dt>
+                <dd>Help message</dd>
+                <dt><code>-p <i>NAMESPACE</i></code>, <code>--preload <i>NAMESPACE</i></code></dt>
+                <dd>Load the specified asset before the main loop.</dd>
+                <dt><code>-r <i>{none,breadth,depth}</i></code>, <code>--recursive <i>{none,breadth,depth}</i></code></dt>
+                <dd>recursive download mode (none, breadth-first, depth-first)</dd>
+                <dt><code>-d <i>DOWNLOADERS</i></code>, <code>--downloaders <i>DOWNLOADERS</i></code></dt>
+                <dd>currently the only supported value is &quot;builtin&quot;</dd>
+            </dl>
+        
+        <h3 id="idm47">Chain</h3>
+            
+
+            <p><code>chain</code> or <code>c</code> command (<code>boiler chain ...</code>) runs an automatic
+                transformation pipeline (see the specification). It accepts the name of the input file
+                (none or <code>-</code> for stdin) and the following options:</p>
+            <dl>
+                <dt><code>-o <i>OUTPUT</i></code></dt>
+                <dd>output file (defaults to stdout)</dd>
+                <dt><code>-t <i>NAMESPACE</i></code>, <code>--target <i>NAMESPACE</i></code></dt>
+                <dd>target namespace (often the XHTML namespace <code>http://www.w3.org/1999/xhtml</code>)</dd>
+                <dt><code>-s <i>{precedence,doc}</i></code>, <code>--next-script <i>{precedence,doc}</i></code></dt>
+                <dd><q>next script</q> algorithm (<q>precedence</q> is not supported)</dd>
+                <dt><code>-n <i>{ignore,remove,error}</i></code>, <code>--not-in-target <i>{ignore,remove,error}</i></code></dt>
+                <dd>What to do if the result XML file contains namespaces not in the target. <q>remove</q> is
+                not supported.</dd>
+                <dt><code>-u <i>URL</i></code>, <code>--universal-precedence <i>URL</i></code></dt>
+                <dd>universal precedence (see the specification)</dd>
+            </dl>
+        
+    
+
+    <h2 id="idm87">Supported namespaces</h2>
+        
+
+        <p>It produces the file with namespaces (in our case the namespace <code>xi:</code>) of priority above
+            <code>http://portonvictor.org/ns/trans/precedence-include</code> to be automatically processed.</p>
+
+        <p>We support also the following namespaces:</p>
+
+        <h3 id="idm93"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</h3>
+            
+            <p>TODO</p>
+        
+
+        <h3 id="idm97"><code>http://portonvictor.org/ns/comment</code> (Comment)</h3>
+            
+            <p>Tags <code>c:comment</code> of this namespace are simply removed from the XML.</p>
+        
+
+        <h3 id="idm102"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</h3>
+            
+            <p>See the source of this document for example. <code>&lt;h?&gt;</code> tags of the correct nesting are
+            automatically created. This allows to generate <code>&lt;h?&gt;</code> tags of correct nesting.</p>
+            <p><code>&lt;struct:toc/&gt;</code> automatically generates a table of contents.</p>
+        
+
+    
+
+</body>
+</html>

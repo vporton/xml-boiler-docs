@@ -10,7 +10,7 @@
 
     <h2>Table of Contents</h2>
 
-    <ul class="ToC"><li><a href="#idm15">Introduction</a></li><li><a href="#idm21">Command line</a><ul class="ToC"><li><a href="#idm23">Common options</a></li><li><a href="#idm48">Chain</a></li></ul></li><li><a href="#idm88">Supported namespaces</a><ul class="ToC"><li><a href="#idm94"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</a></li><li><a href="#idm98"><code>http://portonvictor.org/ns/comment</code> (Comment)</a></li><li><a href="#idm103"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</a></li><li><a href="#idm111"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</a></li></ul></li></ul>
+    <ul class="ToC"><li><a href="#idm15">Introduction</a></li><li><a href="#idm21">Command line</a><ul class="ToC"><li><a href="#idm23">Common options</a></li><li><a href="#idm59">Chain</a></li></ul></li><li><a href="#idm99">Supported namespaces</a><ul class="ToC"><li><a href="#idm105"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</a></li><li><a href="#idm109"><code>http://portonvictor.org/ns/comment</code> (Comment)</a></li><li><a href="#idm114"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</a></li><li><a href="#idm122"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</a></li></ul></li></ul>
 
     <p><a href="https://github.com/vporton/xml-boiler">XML Boiler</a> is a command line program (in the future I am going to make also HTTP(S) proxy interface)
     which automatically processes XML based on its namespaces.</p>
@@ -49,11 +49,15 @@
                 <dd>Load the specified asset before the main loop.</dd>
                 <dt><code>-r <i>{none,breadth,depth}</i></code>, <code>--recursive <i>{none,breadth,depth}</i></code></dt>
                 <dd>recursive download mode (none, breadth-first, depth-first)</dd>
+                <dt><code>-y <i>NAME</i>=<i>DIR</i></code>, <code>--directory <i>NAME</i>=<i>DIR</i></code></dt>
+                <dd>additional directory with assets</dd>
                 <dt><code>-d <i>DOWNLOADERS</i></code>, <code>--downloaders <i>DOWNLOADERS</i></code></dt>
-                <dd>currently the only supported value is &quot;builtin&quot;</dd>
+                <dd>assets to be loaded before the main loop; a plus-separated list of comma-separated lists of
+                    &quot;builtin&quot;,&quot;<i>DIR</i>&quot; (<i>DIR</i> is given by <code>--directory</code> option,
+                    &quot;builtin&quot; is the assets distributed with XML Boiler)</dd>
             </dl>
         
-        <h3 id="idm48">Chain</h3>
+        <h3 id="idm59">Chain</h3>
             
 
             <p><code>chain</code> or <code>c</code> command (<code>boiler chain ...</code>) runs an automatic
@@ -75,7 +79,7 @@
         
     
 
-    <h2 id="idm88">Supported namespaces</h2>
+    <h2 id="idm99">Supported namespaces</h2>
         
 
         <p>It produces the file with namespaces (in our case the namespace <code>xi:</code>) of priority above
@@ -83,24 +87,24 @@
 
         <p>We support also the following namespaces:</p>
 
-        <h3 id="idm94"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</h3>
+        <h3 id="idm105"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</h3>
             
             <p>TODO</p>
         
 
-        <h3 id="idm98"><code>http://portonvictor.org/ns/comment</code> (Comment)</h3>
+        <h3 id="idm109"><code>http://portonvictor.org/ns/comment</code> (Comment)</h3>
             
             <p>Tags <code>c:comment</code> of this namespace are simply removed from the XML.</p>
         
 
-        <h3 id="idm103"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</h3>
+        <h3 id="idm114"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</h3>
             
             <p>See the source of this document for example. <code>&lt;h?&gt;</code> tags of the correct nesting are
             automatically created. This allows to generate <code>&lt;h?&gt;</code> tags of correct nesting.</p>
             <p><code>&lt;struct:toc/&gt;</code> automatically generates a table of contents.</p>
         
 
-        <h3 id="idm111"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</h3>
+        <h3 id="idm122"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</h3>
             
             <pre><div class="highlight"><pre><span/><span class="nt">&lt;pre</span> <span class="na">syntax:format=</span><span class="s">&quot;JavaScript&quot;</span><span class="nt">&gt;</span>function() { return 123 }<span class="nt">&lt;/pre&gt;</span>
 </pre></div></pre>

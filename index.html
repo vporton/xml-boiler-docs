@@ -10,7 +10,7 @@
 
     <h2>Table of Contents</h2>
 
-    <ul class="ToC" xmlns:h="http://www.w3.org/1999/xhtml"><li><a href="#d2e38">Introduction</a></li><li><a href="#d2e56">Command line</a><ul class="ToC"><li><a href="#d2e61">Common options</a></li><li><a href="#d2e167">Chain</a></li></ul></li><li><a href="#d2e278">Supported namespaces</a><ul class="ToC"><li><a href="#xinclude"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</a></li><li><a href="#d2e308"><code>http://portonvictor.org/ns/comment</code> (Comment)</a></li><li><a href="#d2e323"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</a></li><li><a href="#d2e348"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</a></li></ul></li></ul>
+    <ul class="ToC"><li><a href="#idm15">Introduction</a></li><li><a href="#idm21">Command line</a><ul class="ToC"><li><a href="#idm23">Common options</a></li><li><a href="#idm65">Chain</a></li></ul></li><li><a href="#idm109">Supported namespaces</a><ul class="ToC"><li><a href="#xinclude"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</a></li><li><a href="#idm120"><code>http://portonvictor.org/ns/comment</code> (Comment)</a></li><li><a href="#idm125"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</a></li><li><a href="#idm134"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</a></li></ul></li></ul>
 
     <p><a href="https://github.com/vporton/xml-boiler">XML Boiler</a> is a command line program (in the future I am going to make also HTTP(S) proxy interface)
     which automatically processes XML based on its namespaces.</p>
@@ -21,7 +21,7 @@
         <a href="https://en.wikiversity.org/wiki/Automatic_transformation_of_XML_namespaces">the specification</a>.
     See the specification for more details of what this program does and what is its purpose.</p>
 
-    <h2 id="d2e38">Introduction</h2>
+    <h2 id="idm15">Introduction</h2>
         
 
         <p>Consider an XML file with XInclude:</p>
@@ -36,10 +36,10 @@
         <pre>xmlboiler -r order chain tests/core/data/xml/xinclude.xml -u http://portonvictor.org/ns/trans/precedence-include</pre>
     
 
-    <h2 id="d2e56">Command line</h2>
+    <h2 id="idm21">Command line</h2>
         
 
-        <h3 id="d2e61">Common options</h3>
+        <h3 id="idm23">Common options</h3>
             
 
             <dl>
@@ -59,7 +59,7 @@
                     &quot;builtin&quot; is the assets distributed with XML Boiler)</dd>
             </dl>
         
-        <h3 id="d2e167">Chain</h3>
+        <h3 id="idm65">Chain</h3>
             
 
             <p><code>chain</code> or <code>c</code> command (<code>boiler chain ...</code>) runs an automatic
@@ -86,7 +86,7 @@
         
     
 
-    <h2 id="d2e278">Supported namespaces</h2>
+    <h2 id="idm109">Supported namespaces</h2>
         
 
         <p>It produces the file with namespaces (in our case the namespace <code>xi:</code>) of priority above
@@ -96,15 +96,15 @@
 
         <h3 id="xinclude"><code>http://www.w3.org/2001/XInclude</code> (XInclude)</h3> <!-- id just for testing -->
             
-            <p>TODO</p>
+            <p><a href="https://en.wikipedia.org/wiki/XInclude">See Wikipedia.</a></p>
         
 
-        <h3 id="d2e308"><code>http://portonvictor.org/ns/comment</code> (Comment)</h3>
+        <h3 id="idm120"><code>http://portonvictor.org/ns/comment</code> (Comment)</h3>
             
             <p>Tags <code>c:comment</code> of this namespace are simply removed from the XML.</p>
         
 
-        <h3 id="d2e323"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</h3>
+        <h3 id="idm125"><code>http://portonvictor.org/ns/myxhtml/struct</code> (Structure)</h3>
             
             <p>See the <a href="https://github.com/vporton/xml-boiler/blob/master/xmlboiler/doc/index.html">source
                 of this document</a> for an example. <code>&lt;h?&gt;</code> tags of the correct nesting are
@@ -112,7 +112,7 @@
             <p><code>&lt;struct:toc/&gt;</code> automatically generates a table of contents.</p>
         
 
-        <h3 id="d2e348"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</h3>
+        <h3 id="idm134"><code>http://portonvictor.org/ns/syntax</code> (Syntax highlighting)</h3>
             
             <pre><div class="highlight"><pre><span/><span class="nt">&lt;pre</span> <span class="na">syntax:format=</span><span class="s">&quot;JavaScript&quot;</span><span class="nt">&gt;</span>function() { return 123 }<span class="nt">&lt;/pre&gt;</span>
 </pre></div></pre>
